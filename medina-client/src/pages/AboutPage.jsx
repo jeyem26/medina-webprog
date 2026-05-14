@@ -130,7 +130,8 @@ const AboutPage = () => {
 
             </div>
 
-            <Button className="mt-5">Visit Roastery</Button>
+            <Button className="mt-5" to="/articles">Visit Roastery</Button>
+
           </div>
 
         </div>

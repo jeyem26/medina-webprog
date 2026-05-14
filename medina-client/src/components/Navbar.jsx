@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const links = [
@@ -15,11 +16,15 @@ const navLinkClassName = ({ isActive }) =>
   ].join(' ');
 
 const NavBar = () => {
+  const [open, setOpen] = useState(false);
+
+  const closeMenu = () => setOpen(false);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b-2 border-zinc-900/50 bg-[#f8f6f0]/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <NavLink to="/" className="flex items-center gap-3">
-<div className="flex items-center gap-2.5 group hover:scale-[1.02] transition-transform duration-200">
+          <div className="flex items-center gap-2.5 group hover:scale-[1.02] transition-transform duration-200">
             {/* Thin line coffee cup outline + steam */}
             <div className="relative w-[14px] h-[12px] flex-shrink-0 group-hover:opacity-90">
               {/* Cup outline */}
@@ -39,6 +44,7 @@ const NavBar = () => {
           </div>
         </NavLink>
 
+        {/* Desktop nav */}
         <nav className="hidden items-center gap-4 md:flex">
           {links.map((link) => (
             <NavLink
@@ -51,9 +57,44 @@ const NavBar = () => {
             </NavLink>
           ))}
         </nav>
+
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          className="md:hidden inline-flex items-center justify-center rounded-full border-2 border-zinc-900/60 bg-zinc-50 px-3 py-2"
+          aria-label="Open navigation"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-900">
+            Menu
+          </span>
+        </button>
       </div>
+
+      {/* Mobile dropdown */}
+      {open && (
+        <div className="md:hidden border-b-2 border-zinc-900/50 bg-[#f8f6f0]/95 backdrop-blur">
+          <div className="mx-auto max-w-6xl px-4 pb-4 sm:px-6">
+            <div className="flex flex-col gap-3 pt-2">
+              {links.map((link) => (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  end={link.to === '/'}
+                  className={navLinkClassName}
+                  onClick={closeMenu}
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
 
 export default NavBar;
+

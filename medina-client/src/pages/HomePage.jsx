@@ -1,4 +1,5 @@
 import Button from '../components/Button';
+import FeatureCard from '../components/FeatureCard';
 import img1 from '../assets/images/img1.png';
 import img2 from '../assets/images/img2.jpg';
 import img3 from '../assets/images/img3.jpg';
@@ -6,6 +7,7 @@ import img4 from '../assets/images/img4.png';
 
 
 const HomePage = () => {
+
   return (
     <div className="flex w-full flex-col gap-6">
 
@@ -104,48 +106,22 @@ const HomePage = () => {
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
+          <FeatureCard
+            imageSrc={img2}
+            imageAlt="Espresso"
+            title="Espresso"
+            description="Intense, bold flavor with rich crema. Single shot of premium dark roast."
+            buttonTo="/articles"
+          />
 
-          {/* CARD 1 */}
-          <article className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
-            <div className="overflow-hidden rounded-[1.25rem] h-[200px]">
-              <img
-                src={img2}
-                alt="Espresso"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="mt-4 text-lg font-semibold text-amber-900">
-              Espresso
-            </h3>
-            <p className="mt-3 text-sm leading-6 text-amber-700">
-              Intense, bold flavor with rich crema. Single shot of premium dark roast.
-            </p>
-            <Button className="mt-4" variant="primary">
-              Order Now
-            </Button>
-          </article>
+          <FeatureCard
+            imageSrc={img3}
+            imageAlt="Cappuccino"
+            title="Cappuccino"
+            description="Velvety espresso with steamed milk and thick foam. Perfect balance."
+            buttonTo="/articles"
+          />
 
-          {/* CARD 2 */}
-          <article className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
-            <div className="overflow-hidden rounded-[1.25rem] h-[200px]">
-              <img
-                src={img3}
-                alt="Cappuccino"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="mt-4 text-lg font-semibold text-amber-900">
-              Cappuccino
-            </h3>
-            <p className="mt-3 text-sm leading-6 text-amber-700">
-              Velvety espresso with steamed milk and thick foam. Perfect balance.
-            </p>
-            <Button className="mt-4" variant="primary">
-              Order Now
-            </Button>
-          </article>
-
-          {/* CARD 3 */}
           <article className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
             <div className="relative overflow-hidden rounded-[1.25rem] h-[200px]">
               <img
@@ -155,19 +131,17 @@ const HomePage = () => {
               />
               <div className="absolute inset-0 bg-amber-900/10 mix-blend-multiply" />
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-amber-900">
-              Latte
-            </h3>
+            <h3 className="mt-4 text-lg font-semibold text-amber-900">Latte</h3>
             <p className="mt-3 text-sm leading-6 text-amber-700">
               Smooth espresso blended with steamed milk. Creamy texture, perfect for any time.
             </p>
-            <Button className="mt-4" variant="primary">
+            <Button className="mt-4" variant="primary" to="/articles">
               Order Now
             </Button>
           </article>
-
         </div>
       </section>
+
 
     </div>
   );
