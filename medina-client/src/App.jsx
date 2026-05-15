@@ -6,6 +6,9 @@ import ArticlePage from './pages/ArticlePage'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import NotFoundPage from './pages/NotFoundPage'
+import SignInPage from './pages/SignInPage'
+import SignUpPage from './pages/SignUpPage'
+
 
 const routes = [
   {
@@ -26,13 +29,24 @@ const routes = [
       },
     ],
   },
+
   {
-    path: '404',
+    path: 'signin',
     element: <Layout />,
     children: [
       {
         path: '',
-        element: <NotFoundPage />,
+        element: <SignInPage />,
+      },
+    ],
+  },
+  {
+    path: 'signup',
+    element: <Layout />,
+    children: [
+      {
+        path: '',
+        element: <SignUpPage />,
       },
     ],
   },

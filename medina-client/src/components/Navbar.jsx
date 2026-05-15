@@ -5,6 +5,8 @@ const links = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Articles', to: '/articles' },
+  { label: 'Sign In', to: '/signin' },
+  { label: 'Sign Up', to: '/signup', isAuth: true },
 ];
 
 const navLinkClassName = ({ isActive }) =>
@@ -51,7 +53,11 @@ const NavBar = () => {
               key={link.to}
               to={link.to}
               end={link.to === '/'}
-              className={navLinkClassName}
+              className={({ isActive }) => {
+                const base = navLinkClassName({ isActive });
+                if (!link.isAuth) return base;
+                return base + ' bg-amber-600 text-zinc-50 border-amber-600 hover:bg-amber-700 hover:border-amber-700';
+              }}
             >
               {link.label}
             </NavLink>
@@ -82,7 +88,11 @@ const NavBar = () => {
                   key={link.to}
                   to={link.to}
                   end={link.to === '/'}
-                  className={navLinkClassName}
+                  className={({ isActive }) => {
+                    const base = navLinkClassName({ isActive });
+                    if (!link.isAuth) return base;
+                    return base + ' bg-amber-600 text-zinc-50 border-amber-600 hover:bg-amber-700 hover:border-amber-700';
+                  }}
                   onClick={closeMenu}
                 >
                   {link.label}
